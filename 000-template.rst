@@ -5,7 +5,7 @@ NEP-000: Proposal template
 =================  ==================================
 Stage              Idea -> In progress -> Implemented
 Proposed by        Your name <your@email.com>
-Approved by
+Approved on
 Implemented by
 Completion date
 Implemented in
@@ -29,6 +29,11 @@ Details
 Provide additional details in this section.
 While you should keep other sections short,
 feel free to use as much space as you want here.
+However, restrain yourself to making
+one single, concrete proposal.
+If some parts of the proposal
+have alternatives,
+include them in the discussion section below.
 
 You can make additional sections
 --------------------------------
@@ -54,3 +59,20 @@ And:
 
 These lists help maintainers evaluate the proposal.
 Maintainers may add to these lists during the review process.
+
+Discussion
+==========
+
+List discussion points about the detailed description.
+This can include salient alternatives to the proposal,
+or anything else that you think should be discussed.
+
+One section per discussion point
+--------------------------------
+
+Each discussion point will be discussed
+at a developer meeting.
+
+After the meeting,
+update the proposal with a summary
+of the discussion for each point.
