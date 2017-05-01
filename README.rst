@@ -24,12 +24,14 @@ Making a proposal
 =================
 
 To propose a new Nengo enhancement,
-make a pull request on this repository
+make a pull request on the
+`enhancement proposal repository
+<https://github.com/nengo/enhancement_proposals>`_
 adding a reStructuredText file [2]_
 with the proposal.
 Your reStructedText file should follow
-the format of ``000-template.rst`` with
-all of the template text replaced with your proposal.
+the format of :doc:`the template <001-template>`
+with all of the template text replaced with your proposal.
 
 .. [2] reStructuredText is used over other markup formats
        as it can easily be included in Sphinx documentation.
@@ -57,9 +59,13 @@ The stages are as follows:
    In this stage, maintainers and developers will evaluate your proposal,
    suggest additional pros and cons, and propose alternative solutions.
 
-   Once discussion settles down, a maintainer will choose to either
-   reject the proposal by closing the PR unmerged,
-   or will approve it by merging the PR.
+   These discussions will take place through PR comments
+   and at a weekly Nengo development meeting.
+   During the meeting, developers will vote
+   to determine if the proposal will be accepted or rejected.
+   A summary of the discussion and a record of the vote
+   will be added to the NEP after the meeting,
+   and the PR will be merged.
 
 2. NEPs marked as **in progress** are enhancements currently being worked.
 
@@ -79,12 +85,7 @@ The stages are as follows:
 3. NEPs marked as **implemented** are finalized enhancements
    with associated pull requests on Nengo repositories.
 
-   The PR should update the completion date and
-   point to the merged PRs.
-
-Note that the PRs coming out of these proposals
-go through normal review processes,
-and as a result could be rejected
-even if the proposal was accepted.
-In these cases, the proposal will be
-reverted from **in progress** to **idea**.
+   Upon completion of the work described in the NEP,
+   the implementer should update the NEP to include
+   the completion date and where the work can be found
+   (e.g., a new repository, one or more merged PRs on Nengo projects).

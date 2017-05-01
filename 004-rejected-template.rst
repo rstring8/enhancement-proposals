@@ -1,15 +1,12 @@
-**************************
-NEP-000: Proposal template
-**************************
+***********************************
+NEP-004: Rejected proposal template
+***********************************
 
-=================  ==================================
-Stage              Idea -> In progress -> Implemented
-Proposed by        Your name <your@email.com>
-Approved by
-Implemented by
-Completion date
-Implemented in
-=================  ==================================
+=================  ===========================
+Stage              Rejected
+Rejected by
+Rejection date
+=================  ===========================
 
 Context
 =======
@@ -54,3 +51,10 @@ And:
 
 These lists help maintainers evaluate the proposal.
 Maintainers may add to these lists during the review process.
+
+Discussion
+==========
+
+Despite the compelling proposal detailed above,
+this idea was rejected.
+Summarize the discussion of why it was rejected here.

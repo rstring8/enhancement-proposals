@@ -1,14 +1,12 @@
 ********************************
-NEP-401: Multidimensional radius
+NEP-400: Multidimensional radius
 ********************************
 
-=================  ==========================================
+=================  ==============================================
 Stage              Rejected
-Rejected by        Trevor Bekolay <tbekolay@gmail.com>,
-                   Terry Stewart <tcstewar@uwaterloo.ca>,
-                   Chris Eliasmith <celiasmith@uwaterloo.ca>
+Rejected by        Trevor Bekolay, Terry Stewart, Chris Eliasmith
 Rejection date     October 17, 2016
-=================  ==========================================
+=================  ==============================================
 
 Context
 =======
@@ -76,8 +74,11 @@ The radius should remain scalar because:
   the result of the code change may not be straightforward,
   resulting in subtle bugs.
 
-Reasons for rejection
-=====================
+Discussion
+==========
+
+Implementation in Nengo 1.4
+---------------------------
 
 Multidimensional radii were introduced in Nengo 1.4
 late in its lifecycle,
@@ -90,6 +91,9 @@ of the network.
 It is not clear whether it is valid to
 sample from a uniform hypersphere
 and stretch the points to a hyperellipsoid.
+
+Finality
+--------
 
 This rejection could be reversed
 if significant analysis and testing is done
