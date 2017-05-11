@@ -1,16 +1,13 @@
 **********************
-NEP-001: Probe outputs
+NEP-401: Probe outputs
 **********************
 
 =================  =====================================
-Stage              Idea
-Proposed by        Trevor Bekolay <tbekolay@gmail.com>,
-                   Eric Hunsberger <erichuns@gmail.com>,
-                   Terry Stewart <tcstewar@uwaterloo.ca>
-Approved by
-Implemented by
-Completion date
-Implemented in
+Stage              Rejected
+Rejected by        Trevor Bekolay, Chris Eliasmith,
+                   Jan Gosmann, Daniel Rasmussen,
+                   Terry Stewart, Allen Wang
+Rejection date     May 8, 2017
 =================  =====================================
 
 Context
@@ -63,7 +60,7 @@ A ``Parameter`` subclass will also be created
 to support the new output formats objects.
 
 The superclass object should be called
-``OutputFormat`` [1]_,
+``OutputFormat``,
 and should contain a docstring,
 a small amount of metadata
 (e.g., is this a streaming output format,
@@ -125,7 +122,7 @@ can scale adequately.
    Arguments: file name, file name template
 
    Probes to a ``NeoHDF5File``, the native datafile format for
-   `Neo <https://pythonhosted.org/neo/`_.
+   `Neo <https://pythonhosted.org/neo/>`_.
 
 6. ``NPZFile`` / ``NPYFile``
    Arguments: file name, file name template
@@ -206,7 +203,80 @@ Pros:
 Cons:
 
 * Users could write nodes or post-processing scripts to do this for them instead.
+
   * It's been over 3 years and no one's implemented it yet,
     so the alternatives must not be too difficult.
+
 * Might be difficult for some backends to support.
 * Might be a lot of non-simulation related code to maintain.
+
+Discussion
+==========
+
+This proposal was ultimately rejected,
+pending further exploration
+of ways to achieve the same end goal
+without having to modify the ``Probe`` object.
+
+The most straightforward alternative to the probe output approach
+is to develop a set of ``Process`` subclasses
+that implement the operations
+that would be done by the probe outputs.
+For example, we will a ``UDPSocket`` process
+that will transmit data to a UDP socket
+on each timestep.
+Processes are a good alternative
+because we already expect users
+to make ``Process`` subclasses.
+
+Backend considerations
+----------------------
+
+One of the main concerns with probe outputs
+is how backends would implement them.
+There are similar concerns with ``Process`` subclasses,
+but most backends are able to fall back
+to running the process with Python on the CPU.
+This can be very slow, but it should at least work.
+
+When it is slow, there is precedent for implementing
+``Process`` subclass-specific code in backends;
+Nengo OCL implements an OpenCL kernel
+for the `PresentInput process
+<https://github.com/nengo/nengo_ocl/blob/fa97472c888713db2842ffcd92c13aa8ce9730ca/nengo_ocl/clra_nonlinearities.py#L1440>`_,
+for example.
+
+Therefore, compared to probe outputs,
+process subclasses should be
+no more difficult to implement in different backends.
+In fact, they should be easier in that
+backends may have ways to run
+process subclasses already.
+
+Speed considerations
+--------------------
+
+The main argument for probe outputs
+is that they may have access
+to more simulation internals
+than a Node's output process,
+and therefore probe outputs
+may be significantly faster than process subclasses.
+
+However, making changes to the API
+for a hypothetical speed increase
+is a prime example of premature optimization.
+It was decided, instead,
+to explore the process subclass first
+and determine if there are significant bottlenecks
+that would be alleviated
+by using probe outputs instead.
+
+Finality
+--------
+
+This rejection could be reversed
+if we find that process subclasses
+do have significant bottlenecks,
+and there is reason to believe that
+probe outputs would not suffer from the same issues.
