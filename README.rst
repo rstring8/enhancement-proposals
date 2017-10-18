@@ -89,3 +89,12 @@ The stages are as follows:
    the implementer should update the NEP to include
    the completion date and where the work can be found
    (e.g., a new repository, one or more merged PRs on Nengo projects).
+
+   It should be noted that pull requests resulting from NEPs
+   that have gone through this review process
+   will still go through the normal pull request review process.
+   It is possible for an NEP to be rejected after implementation
+   as a result of the pull request review process.
+   We expect that this will be a rare occurrence,
+   but want to be clear that the NEP review process
+   does not exempt the implementation from the usual PR review process.

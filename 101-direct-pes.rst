@@ -1,15 +1,18 @@
 ***************************
-NEP-001: PES in direct mode
+NEP-101: PES in direct mode
 ***************************
 
-=================  ===================================
+=================  ==============================================
 Stage              Idea
 Proposed by        Trevor Bekolay <tbekolay@gmail.com>
-Approved by
+Approved on        October 16, 2017
+Approved by        Trevor Bekolay, Chris Eliasmith, Jan Gosmann,
+                   Daniel Rasmussen, Terry Stewart, Allen Wang
+Estimated effort   6 weeks
 Implemented by
 Completion date
 Implemented in
-=================  ===================================
+=================  ==============================================
 
 Context
 =======
@@ -139,3 +142,55 @@ is not worth the effort because:
 * It may be slower than PES learning with neurons
   for input spaces of high dimensionality,
   since the lookup table will be large.
+
+Discussion
+==========
+
+Use case
+--------
+
+It is worth clarifying why one
+would want to use the PES rule with a direct ensemble.
+The typical use case is when testing out a large network
+that incorporates the PES learning rule.
+If one sets ``nengo.Direct`` as the default neuron type,
+the network will no longer build as the PES learning rule
+requires neural activities on the ``pre`` side.
+Implementing PES-like learning in direct mode
+would allow easier prototyping of large networks
+that use learning rules.
+
+It should be noted that this NEP was proposed
+prior to the existence of the
+`activate_direct_mode
+<https://github.com/nengo/nengo/blob/v2.6.0/nengo/utils/network.py#L31>`_
+helper function.
+This function is another approach to the
+use case above,
+as it does not convert ensembles involved in learning rules
+to direct mode.
+However, it was decided that
+the existence of this function does not
+make this NEP invalid,
+only less urgent.
+
+Skepticism
+----------
+
+Unlike other proposals, there is skepticism as to
+whether the implementation in this NEP
+will actually accomplish the use case above;
+specifically, it is not clear
+that a lookup table in a potentially high-dimensional space
+will be able to track error information
+sufficiently well to operate "like PES."
+
+It was decided that, while we are skeptical,
+we would not discourage anyone
+from attempting to implement this NEP,
+unlike the NEPs we have rejected.
+However, someone looking to implement this NEP
+should think of it as a research project
+that may or may not yield results,
+rather than as a missing feature
+that Nengo absolutely needs.
