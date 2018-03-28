@@ -1,0 +1,338 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>NEP-404: Java backend &#8212; Nengo Enhancement Proposals 2018-03-28 documentation</title>
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2018-03-28',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NEP-001: Proposal template" href="001-template.html" />
+    <link rel="prev" title="NEP-403: Variable synapse defaults" href="403-variable-synapse-defaults.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="001-template.html" title="NEP-001: Proposal template"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="403-variable-synapse-defaults.html" title="NEP-403: Variable synapse defaults"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">NEPs</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="100-pynn-backend.html">NEP-100: PyNN backend</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="400-multidim-radius.html">NEP-400: Multidimensional radius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="401-probe-outputs.html">NEP-401: Probe outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="402-ndarray-representation.html">NEP-402: Ndarray representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="403-variable-synapse-defaults.html">NEP-403: Variable synapse defaults</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEP-404: Java backend</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proposal">Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pros-and-cons">Pros and cons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001-template.html">NEP-001: Proposal template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004-rejected-template.html">NEP-004: Rejected proposal template</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>NEP-404: Java backend</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="nep-404-java-backend">
+<h1>NEP-404: Java backend<a class="headerlink" href="#nep-404-java-backend" title="Permalink to this headline">¶</a></h1>
+<table class="table table-bordered">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Stage</td>
+<td>Rejected</td>
+</tr>
+<tr class="row-even"><td>Rejected by</td>
+<td>Trevor Bekolay, Chris Eliasmith,
+Jan Gosmann, Daniel Rasmussen, Allen Wang</td>
+</tr>
+<tr class="row-odd"><td>Rejection date</td>
+<td>October 2, 2017</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>Nengo 1.4 was implemented in Java.
+We’ve progressed to Python for Nengo 2,
+but Java’s still a powerhouse in terms of language use,
+and it does multithreading better than most other languages.
+Most importantly, it’s the language Android uses.
+With a Java backend, we could write Nengo models
+with the usual frontend code,
+and have the backend spit out some Java class files
+that implement that specific model,
+which could easily be used in an Android application.</p>
+</div>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Create a Java backend for Nengo
+by co-opting the existing Nengo 1.4 codebase.</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Like all other backends,
+the Java backend would be encapsulated
+in a <code class="docutils literal"><span class="pre">Simulator</span></code> object:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">nengo</span><span class="o">.</span><span class="n">Network</span><span class="p">()</span> <span class="k">as</span> <span class="n">net</span><span class="p">:</span>
+    <span class="c1"># Model stuff</span>
+<span class="k">with</span> <span class="n">nengo_java</span><span class="o">.</span><span class="n">Simulator</span><span class="p">(</span><span class="n">net</span><span class="p">)</span> <span class="k">as</span> <span class="n">sim</span><span class="p">:</span>
+    <span class="n">sim</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The main difficulty with the Java backend
+is going to be dealing with the
+Java / Python interface.
+If we constrain the interaction
+to be only one-way,
+the interface is easy to define,
+but it means that nodes have to be
+significantly simplified.</p>
+<p>Two-way interaction is possible;
+we did it in Nengo 1.4 using <a class="reference external" href="http://www.jython.org/">Jython</a>,
+which has progressed a bit over the past few years.
+There are also some new projects aiming to do
+two-way Java / Python interop,
+most notably <a class="reference external" href="https://github.com/kivy/pyjnius">PyJNIus</a>.</p>
+<p>The first step in the implementation will be
+evaluating these interop methods
+and making some quick prototypes.
+Once an interop method has been chosen,
+the existing Nengo 1.4 simulator code
+should be used;
+the <code class="docutils literal"><span class="pre">Simulator</span></code> class would essentially be
+a wrapper around the core Nengo 1.4 simulator code.</p>
+<p>Note that at one point I filtered the Nengo 1.4 history
+to include only the simulator files.
+It’s available as
+<a class="reference external" href="https://github.com/tbekolay/nengo_java">tbekolay/nengo_java</a>
+for whoever wants to implement this backend.</p>
+</div>
+<div class="section" id="pros-and-cons">
+<h2>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this headline">¶</a></h2>
+<p>Reasons to implement this backend:</p>
+<ul class="simple">
+<li>Enables Nengo models running on Android phones.</li>
+<li>Less effort than other backends due to existing Nengo 1.4 codebase.</li>
+</ul>
+<p>Reasons not to implement this backend:</p>
+<ul class="simple">
+<li>Java / Python interop is difficult, and none of the options are perfect.
+<a class="reference external" href="http://sethgodin.typepad.com/seths_blog/2005/03/dont_shave_that.html">Yak shaving</a>
+is inevitable.</li>
+<li>A Java backend would not allow arbitrary models to run on Android apps
+due to requiring Python to construct the model.</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>While no one is strongly opposed to the creation
+of a Nengo backend that targets the
+Java Virtual Machine (JVM),
+the consensus is that such a backend
+is a low enough priority that we
+are rejecting this proposal
+in order to discourage people from
+spending time on it
+unless they are very strongly motivated.</p>
+<div class="section" id="java-vs-kotlin-vs-scala">
+<h3>Java vs Kotlin vs Scala<a class="headerlink" href="#java-vs-kotlin-vs-scala" title="Permalink to this headline">¶</a></h3>
+<p>One of the reasons to believe that Java Nengo backend
+would be easy to implement is that Nengo 1.4
+is implemented in Java.
+However, if our goal is to run Nengo models with the JVM,
+it is likely that a new project would not
+choose the Java language,
+but instead a more modern language
+that targets the JVM
+(e.g., Kotlin, Scala).
+Starting from scratch is a big time commitment.</p>
+</div>
+<div class="section" id="nengo-on-mobile-phones">
+<h3>Nengo on mobile phones<a class="headerlink" href="#nengo-on-mobile-phones" title="Permalink to this headline">¶</a></h3>
+<p>If the main goal of implementing a Java backend
+is to target Android phones,
+it’s not clear that a Java backend
+is the best way to do that.</p>
+<p>For one, doing it at scale would require
+some kind of Python / Java interop,
+which as noted in the details above,
+is not yet possible with today’s tools.
+An alternative would be to implement
+a Java frontend as well,
+but we are strongly motivated to avoid multiple frontends.</p>
+<p>Second, a Java backend would,
+at best, only target all Android devices.
+Android makes up the majority
+of the mobile phone market,
+but any respectable application
+should have Android and IOS versions.</p>
+<p>Finally, at the moment it is unclear
+the size of model that could fit on a phone,
+and how quickly the model would simulate.</p>
+<p>All of these factors lead to a general consensus
+that it would be better to get Nengo running on phones
+using a client / server architecture,
+as is already done with Nengo GUI.
+In the simplest case, a phone can access
+the Nengo GUI web interface.
+For something fancier, we can implement
+native GUIs for Android and IOS that
+communicate with the same Nengo GUI server.</p>
+</div>
+<div class="section" id="finality">
+<h3>Finality<a class="headerlink" href="#finality" title="Permalink to this headline">¶</a></h3>
+<p>This rejection is a soft rejection,
+in that we highly discourage people
+who are interested in Nengo from
+implementing a Java backend.
+However, that rejection is based on
+the assumption that the Java backend
+is primarily useful for targeting Android phones.
+If someone is interested in developing
+a Java backend for a different use case,
+please start a discussion on
+<a class="reference external" href="https://forum.nengo.ai/">the Nengo forum</a>
+describing your use case.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="403-variable-synapse-defaults.html" title="previous chapter (use the left arrow)">NEP-403: Variable synapse defaults</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="001-template.html" title="next chapter (use the right arrow)">NEP-001: Proposal template</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="001-template.html" title="NEP-001: Proposal template"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="403-variable-synapse-defaults.html" title="NEP-403: Variable synapse defaults"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2017, Applied Brain Research. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

@@ -1,0 +1,294 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>NEP-402: Ndarray representations &#8212; Nengo Enhancement Proposals 2018-03-28 documentation</title>
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2018-03-28',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NEP-403: Variable synapse defaults" href="403-variable-synapse-defaults.html" />
+    <link rel="prev" title="NEP-401: Probe outputs" href="401-probe-outputs.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="403-variable-synapse-defaults.html" title="NEP-403: Variable synapse defaults"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="401-probe-outputs.html" title="NEP-401: Probe outputs"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">NEPs</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="100-pynn-backend.html">NEP-100: PyNN backend</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="400-multidim-radius.html">NEP-400: Multidimensional radius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="401-probe-outputs.html">NEP-401: Probe outputs</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEP-402: Ndarray representations</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proposal">Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pros-and-cons">Pros and cons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="403-variable-synapse-defaults.html">NEP-403: Variable synapse defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="404-java-backend.html">NEP-404: Java backend</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001-template.html">NEP-001: Proposal template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004-rejected-template.html">NEP-004: Rejected proposal template</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>NEP-402: Ndarray representations</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="nep-402-ndarray-representations">
+<h1>NEP-402: Ndarray representations<a class="headerlink" href="#nep-402-ndarray-representations" title="Permalink to this headline">¶</a></h1>
+<table class="table table-bordered">
+<colgroup>
+<col width="29%" />
+<col width="71%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Stage</td>
+<td>Rejected</td>
+</tr>
+<tr class="row-even"><td>Rejected by</td>
+<td>Trevor Bekolay, Chris Eliasmith,
+Jan Gosmann, Terry Stewart, Allen Wang</td>
+</tr>
+<tr class="row-odd"><td>Rejection date</td>
+<td>October 24, 2016</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>There is often a desire for Nengo
+to work more like NumPy
+since we make liberal use of it
+in the frontend and in the reference simulator.
+It’s common for a node function
+to have to <code class="docutils literal"><span class="pre">ravel</span></code> some internal representation
+to expose it to Nengo,
+and for some vector from Nengo needing a
+<code class="docutils literal"><span class="pre">reshape</span></code> before later use.
+Under the hood, NumPy also represents ndarrays
+as vectors of numbers,
+so why can’t Nengo do the same?</p>
+</div>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Generalize ensemble and node representations
+to be ndarrays instead of vectors.
+This means instead of <code class="docutils literal"><span class="pre">dimensionality</span></code>,
+we have <code class="docutils literal"><span class="pre">shape</span></code>;
+instead of <code class="docutils literal"><span class="pre">size_in</span></code> and <code class="docutils literal"><span class="pre">size_out</span></code>,
+we have <code class="docutils literal"><span class="pre">shape_in</span></code> and <code class="docutils literal"><span class="pre">shape_out</span></code>.</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>In order to minimize changes to backends,
+the underlying representation of ensembles
+should remain a vector.
+The shape of the ensemble
+(which replaces the dimensionality)
+defines a view on the underlying vector.
+In the ideal case, that mapping would be dealt with
+in the frontend, but that is unfortunately not possible.
+However, it can be dealt with in the build phase.
+Helper functions for dealing with the mapping
+will be developed so that other backends
+don’t have to reimplement that logic.</p>
+</div>
+<div class="section" id="pros-and-cons">
+<h2>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this headline">¶</a></h2>
+<p>We should generalize to ndarray representation because:</p>
+<ul class="simple">
+<li>Makes interoperating with NumPy easier.</li>
+<li>Paves the way for a future API that looks more like
+traditional programming (but uses neurons under the hood).</li>
+</ul>
+<p>We should stick with vector representation because:</p>
+<ul class="simple">
+<li>Transformations between arbitrary ndarrays would be
+very difficult to define.
+Might require deprecating <code class="docutils literal"><span class="pre">transform</span></code> and requiring
+slices, which might necessitate a new <code class="docutils literal"><span class="pre">weight</span></code> argument.</li>
+<li>Neural computation is significantly different from
+traditional programming. We should not give
+the impression that they are similar.</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>This would be a pretty huge change to Nengo,
+requiring significant backward-incompatible
+frontend changes and changes in every backend.
+That might be okay if it were a clear win
+that made Nengo simpler, more powerful,
+faster, etc.
+However, the benefit here is not that obvious,
+and the two downsides mentioned above
+are serious.</p>
+<div class="section" id="slippery-slope">
+<h3>Slippery slope<a class="headerlink" href="#slippery-slope" title="Permalink to this headline">¶</a></h3>
+<p>Allowing ndarray representations is the next
+step after vector representations
+in the Neural Engineering book.
+However, there are further steps after matrices,
+names functions and vector fields.
+One can image stages after that too.
+Adding ndarrays implies that we would also
+add function and vector field representations,
+which does not seem like something Nengo core
+should be doing.</p>
+</div>
+<div class="section" id="terry-tried-it">
+<h3>Terry tried it<a class="headerlink" href="#terry-tried-it" title="Permalink to this headline">¶</a></h3>
+<p>It’s worth also noting that Terry
+has experimented with some preliminary Python APIs
+that included ndarray representations.
+It complicated the code unnecessarily,
+and he would not recommend it.</p>
+</div>
+<div class="section" id="finality">
+<h3>Finality<a class="headerlink" href="#finality" title="Permalink to this headline">¶</a></h3>
+<p>This rejection is unlikely to be reversed.
+While we would not discourage anyone
+who wants to experiment with this
+for their own personal interest,
+it would be nearly impossible
+for that experiment
+to ever wind up in Nengo.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="401-probe-outputs.html" title="previous chapter (use the left arrow)">NEP-401: Probe outputs</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="403-variable-synapse-defaults.html" title="next chapter (use the right arrow)">NEP-403: Variable synapse defaults</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="403-variable-synapse-defaults.html" title="NEP-403: Variable synapse defaults"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="401-probe-outputs.html" title="NEP-401: Probe outputs"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2017, Applied Brain Research. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

@@ -1,0 +1,228 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>Nengo enhancement proposals &#8212; Nengo Enhancement Proposals 2018-03-28 documentation</title>
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2018-03-28',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">NEPs</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="100-pynn-backend.html">NEP-100: PyNN backend</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="400-multidim-radius.html">NEP-400: Multidimensional radius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="401-probe-outputs.html">NEP-401: Probe outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="402-ndarray-representation.html">NEP-402: Ndarray representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="403-variable-synapse-defaults.html">NEP-403: Variable synapse defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="404-java-backend.html">NEP-404: Java backend</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001-template.html">NEP-001: Proposal template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004-rejected-template.html">NEP-004: Rejected proposal template</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>Nengo enhancement proposals</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="nengo-enhancement-proposals">
+<h1>Nengo enhancement proposals<a class="headerlink" href="#nengo-enhancement-proposals" title="Permalink to this headline">¶</a></h1>
+<p>This repository contains proposals for enhancements
+to the Nengo ecosystem,
+dubbed Nengo Enhancement Proposals or NEPs <a class="footnote-reference" href="#id2" id="id1">[1]</a>.</p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>Inspired by Python’s <a class="reference external" href="https://www.python.org/dev/peps/">PEPs</a>
+and Jupyter’s <a class="reference external" href="https://github.com/jupyter/enhancement-proposals">JEPs</a>.</td></tr>
+</tbody>
+</table>
+<p>NEPs are a way to propose and discuss changes that will touch
+multiple projects in the Nengo ecosystem,
+or require a large change to one project.
+NEPs allow Nengo developers to collaboratively
+propose and evaluate ideas
+before going through a lot of effort implementing them,
+and without cluttering up the issue tracker
+of individual projects.
+They also allow us to have a rough roadmap
+of upcoming changes to the Nengo ecosystem.</p>
+<div class="section" id="making-a-proposal">
+<h2>Making a proposal<a class="headerlink" href="#making-a-proposal" title="Permalink to this headline">¶</a></h2>
+<p>To propose a new Nengo enhancement,
+make a pull request on the
+<a class="reference external" href="https://github.com/nengo/enhancement-proposals">enhancement proposal repository</a>
+adding a reStructuredText file <a class="footnote-reference" href="#id4" id="id3">[2]</a>
+with the proposal.
+Your reStructedText file should follow
+the format of <a class="reference internal" href="001-template.html"><span class="doc">the template</span></a>
+with all of the template text replaced with your proposal.</p>
+<table class="docutils footnote" frame="void" id="id4" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id3">[2]</a></td><td>reStructuredText is used over other markup formats
+as it can easily be included in Sphinx documentation.</td></tr>
+</tbody>
+</table>
+<p>Note that, in addition to prose,
+there is a table of metadata at the start
+of each NEP. Most of the steps below
+involved updating that metadata.</p>
+</div>
+<div class="section" id="review-process">
+<h2>Review process<a class="headerlink" href="#review-process" title="Permalink to this headline">¶</a></h2>
+<p>Each NEP goes through a series of stages.
+In most cases, a pull request is used for each stage transition.
+While anyone can make a proposal
+and comment on it,
+only Nengo maintainers can approve stage transitions.</p>
+<p>The stages are as follows:</p>
+<ol class="arabic">
+<li><p class="first">NEPs marked as <strong>idea</strong> are enhancements that we wish to make,
+but are not yet being worked on.</p>
+<p>When you first open your proposal PR, it is in the idea stage.
+In this stage, maintainers and developers will evaluate your proposal,
+suggest additional pros and cons, and propose alternative solutions.</p>
+<p>These discussions will take place through PR comments
+and at a weekly Nengo development meeting.
+During the meeting, developers will vote
+to determine if the proposal will be accepted or rejected.
+A summary of the discussion and a record of the vote
+will be added to the NEP after the meeting,
+and the PR will be merged.</p>
+</li>
+<li><p class="first">NEPs marked as <strong>in progress</strong> are enhancements currently being worked.</p>
+<p>Developers can offer to implement approved ideas
+by making a PR that fills in their name as
+the proposed implementer,
+and provides an estimated completion date.
+The completion date is not a hard deadline,
+but it helps maintainers keep track
+of what is currently being worked on,
+and what has been abandoned.</p>
+<p>If a maintainer thinks that the developer is up to the task
+and that the completion date is reasonable,
+they will merge the PR.</p>
+</li>
+<li><p class="first">NEPs marked as <strong>implemented</strong> are finalized enhancements
+with associated pull requests on Nengo repositories.</p>
+<p>Upon completion of the work described in the NEP,
+the implementer should update the NEP to include
+the completion date and where the work can be found
+(e.g., a new repository, one or more merged PRs on Nengo projects).</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+          </div>
+            
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2017, Applied Brain Research. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

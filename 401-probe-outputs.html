@@ -1,0 +1,439 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>NEP-401: Probe outputs &#8212; Nengo Enhancement Proposals 2018-03-28 documentation</title>
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2018-03-28',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NEP-402: Ndarray representations" href="402-ndarray-representation.html" />
+    <link rel="prev" title="NEP-400: Multidimensional radius" href="400-multidim-radius.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="402-ndarray-representation.html" title="NEP-402: Ndarray representations"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="400-multidim-radius.html" title="NEP-400: Multidimensional radius"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">NEPs</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="100-pynn-backend.html">NEP-100: PyNN backend</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="400-multidim-radius.html">NEP-400: Multidimensional radius</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEP-401: Probe outputs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proposal">Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pros-and-cons">Pros and cons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="402-ndarray-representation.html">NEP-402: Ndarray representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="403-variable-synapse-defaults.html">NEP-403: Variable synapse defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="404-java-backend.html">NEP-404: Java backend</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001-template.html">NEP-001: Proposal template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004-rejected-template.html">NEP-004: Rejected proposal template</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>NEP-401: Probe outputs</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="nep-401-probe-outputs">
+<h1>NEP-401: Probe outputs<a class="headerlink" href="#nep-401-probe-outputs" title="Permalink to this headline">¶</a></h1>
+<table class="table table-bordered">
+<colgroup>
+<col width="31%" />
+<col width="69%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Stage</td>
+<td>Rejected</td>
+</tr>
+<tr class="row-even"><td>Rejected by</td>
+<td>Trevor Bekolay, Chris Eliasmith,
+Jan Gosmann, Daniel Rasmussen,
+Terry Stewart, Allen Wang</td>
+</tr>
+<tr class="row-odd"><td>Rejection date</td>
+<td>May 8, 2017</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p><code class="docutils literal"><span class="pre">nengo.Probe</span></code> is used in Nengo models to collect data
+during the simulation.
+Currently, probed data is appended to a Python list,
+meaning that it is present in the memory used
+by the running Python process.
+If that process is halted early,
+that information can be lost.
+Additionally, it is not possible to get access
+to that data through normal means
+while the simulation is running.
+For that reason, Nengo GUI does not use
+the probe system, and instead inserts nodes
+that are used to stream data to the browser.</p>
+<p>Probes would be more useful if they
+could provide access to probed data
+different ways.</p>
+</div>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Add an <code class="docutils literal"><span class="pre">output</span></code> parameter to <code class="docutils literal"><span class="pre">nengo.Probe</span></code>.
+The value of the <code class="docutils literal"><span class="pre">output</span></code> parameter determines
+how the simulator will provide probed data
+to other processes.</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>The <code class="docutils literal"><span class="pre">output</span></code> parameter should accept
+an object instance that defines the desired
+output format.
+These objects are analogous to the
+<code class="docutils literal"><span class="pre">NeuronType</span></code> and <code class="docutils literal"><span class="pre">LearningRuleType</span></code> objects
+in that they symbolically define
+what a backend should do,
+but (ideally) do not implement the logic,
+as that logic would be backend specific.</p>
+<p>All these objects should subclass from
+the same class in order to make validation easier,
+and to make it easier for backends to define
+which output formats they support.
+A <code class="docutils literal"><span class="pre">Parameter</span></code> subclass will also be created
+to support the new output formats objects.</p>
+<p>The superclass object should be called
+<code class="docutils literal"><span class="pre">OutputFormat</span></code>,
+and should contain a docstring,
+a small amount of metadata
+(e.g., is this a streaming output format,
+is all of the history retained or only the last N timesteps, etc),
+and possibly a <code class="docutils literal"><span class="pre">__repr__</span></code> and <code class="docutils literal"><span class="pre">__str__</span></code> function.
+See <code class="docutils literal"><span class="pre">nengo.LearningRuleType</span></code> for a class with
+similar requirements.</p>
+<div class="section" id="output-formats">
+<h3>Output formats<a class="headerlink" href="#output-formats" title="Permalink to this headline">¶</a></h3>
+<p>Note that implementing this proposal does not
+require implementing all of the below formats;
+however, it must implement at least three
+in order to show that the implementation
+can scale adequately.</p>
+<ol class="arabic">
+<li><p class="first"><code class="docutils literal"><span class="pre">PythonList</span></code> or <code class="docutils literal"><span class="pre">NumpyArray</span></code> or <code class="docutils literal"><span class="pre">Memory</span></code>.
+Arguments: None.</p>
+<p>Probes to a Python list,
+which gets converted to a NumPy array by the simulator.
+This is the functionality that currently exists.
+It should therefore be the default value
+of the <code class="docutils literal"><span class="pre">Probe.output</span></code> parameter.</p>
+<p>Note that the conversion to a NumPy array
+may be something that we want to be supported
+by all output formats.
+Currently, the NumPy conversion happens
+in the <code class="docutils literal"><span class="pre">ProbeDict</span></code>.
+If we are implementing alternative output formats,
+we should also implement a way to read those formats.
+It may be possible to have this be done through
+an API that the <code class="docutils literal"><span class="pre">ProbeDict</span></code> can call on all output formats.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">Queue</span></code>.
+Arguments: maximum length.</p>
+<p>Probes to a Python <code class="docutils literal"><span class="pre">deque</span></code>.
+The length of the queue is passed in as an argument,
+making this output format useful when you only want
+to know the end result of the simulation rather than
+its whole history.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">UDPSocket</span></code>.
+Arguments: socket number</p>
+<p>Probes to a UDP socket.
+Unlike <code class="docutils literal"><span class="pre">PythonList</span></code>, it is not guaranteed that
+a <code class="docutils literal"><span class="pre">UDPSocket</span></code> probe will successfully transmit all of the data.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">CSVFile</span></code>.
+Arguments: file name, file name template</p>
+<p>Probes to a CSV file, or possibly multiple CSV files.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">NeoFile</span></code>.
+Arguments: file name, file name template</p>
+<p>Probes to a <code class="docutils literal"><span class="pre">NeoHDF5File</span></code>, the native datafile format for
+<a class="reference external" href="https://pythonhosted.org/neo/">Neo</a>.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">NPZFile</span></code> / <code class="docutils literal"><span class="pre">NPYFile</span></code>
+Arguments: file name, file name template</p>
+<p>Probes to a <code class="docutils literal"><span class="pre">.npz</span></code> or <code class="docutils literal"><span class="pre">.npy</span></code> file, which is used by NumPy.</p>
+</li>
+<li><p class="first"><code class="docutils literal"><span class="pre">Texture</span></code>
+Arguments: ???</p>
+<p>Probes to an OpenGL texture for direct rendering.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="why-a-new-parameter-and-set-of-classes">
+<h3>Why a new parameter and set of classes?<a class="headerlink" href="#why-a-new-parameter-and-set-of-classes" title="Permalink to this headline">¶</a></h3>
+<p>Adding different output formats should not affect
+current models, and should be switchable
+with minimal effort.
+The easiest way to do that is to use
+Nengo’s existing config system,
+which allows for setting default values.
+By making a new parameter,
+per-network defaults can be set.
+Given that we wish to make it an object parameter,
+instances make sense to describe output formats
+as it follows from how we define
+neuron types and learning rules.</p>
+</div>
+<div class="section" id="why-not-use-strings-to-denote-output-formats">
+<h3>Why not use strings to denote output formats?<a class="headerlink" href="#why-not-use-strings-to-denote-output-formats" title="Permalink to this headline">¶</a></h3>
+<p>It might be possible to enumerate all the possible output formats
+and pass them as strings (e.g., <code class="docutils literal"><span class="pre">&quot;CSVFile&quot;</span></code>).
+However, several output formats warrant
+changing behavior through flags or other arguments
+(e.g., the name of the CSV file).
+Making classes is more clear and Pythonic
+than inventing a new string format we have to parse.</p>
+</div>
+<div class="section" id="alternative-naming-schemes">
+<h3>Alternative naming schemes<a class="headerlink" href="#alternative-naming-schemes" title="Permalink to this headline">¶</a></h3>
+<p>By far the most contentious part of this proposal
+(see the issues linked below)
+is what these objects should be named.
+The names above are those suggested by the proposal author,
+but should be decided by consensus
+before the implementation is finalized.</p>
+<p>Alternative names that have been suggested
+for the superclass:</p>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">ProbeOutput</span></code></li>
+</ol>
+<p>Alternative naming schemes for output formats
+(a few examples shown, but you get the idea):</p>
+<ol class="arabic simple">
+<li><code class="docutils literal"><span class="pre">ProbePythonList</span></code>, <code class="docutils literal"><span class="pre">ProbeCSVFile</span></code></li>
+<li><code class="docutils literal"><span class="pre">ToPythonList</span></code>, <code class="docutils literal"><span class="pre">ToCSVFile</span></code> (used as <code class="docutils literal"><span class="pre">nengo.probe.ToPythonList</span></code> etc)</li>
+<li><code class="docutils literal"><span class="pre">ProbeToPythonList</span></code>, <code class="docutils literal"><span class="pre">ProbeToCSVFile</span></code></li>
+</ol>
+</div>
+<div class="section" id="see-also">
+<h3>See also<a class="headerlink" href="#see-also" title="Permalink to this headline">¶</a></h3>
+<p>This proposal is a distillation
+of the following Nengo issues and PRs:
+<a class="reference external" href="https://github.com/nengo/nengo/issues/207">#207</a>,
+<a class="reference external" href="https://github.com/nengo/nengo/issues/613">#613</a>,
+<a class="reference external" href="https://github.com/nengo/nengo/pull/654">#654</a>.</p>
+</div>
+</div>
+<div class="section" id="pros-and-cons">
+<h2>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this headline">¶</a></h2>
+<p>Pros:</p>
+<ul class="simple">
+<li>Writing to files is pretty much necessary for analysis.</li>
+<li>Handling this natively in Nengo makes life much easier for modelers.</li>
+</ul>
+<p>Cons:</p>
+<ul class="simple">
+<li>Users could write nodes or post-processing scripts to do this for them instead.<ul>
+<li>It’s been over 3 years and no one’s implemented it yet,
+so the alternatives must not be too difficult.</li>
+</ul>
+</li>
+<li>Might be difficult for some backends to support.</li>
+<li>Might be a lot of non-simulation related code to maintain.</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>This proposal was ultimately rejected,
+pending further exploration
+of ways to achieve the same end goal
+without having to modify the <code class="docutils literal"><span class="pre">Probe</span></code> object.</p>
+<p>The most straightforward alternative to the probe output approach
+is to develop a set of <code class="docutils literal"><span class="pre">Process</span></code> subclasses
+that implement the operations
+that would be done by the probe outputs.
+For example, we will a <code class="docutils literal"><span class="pre">UDPSocket</span></code> process
+that will transmit data to a UDP socket
+on each timestep.
+Processes are a good alternative
+because we already expect users
+to make <code class="docutils literal"><span class="pre">Process</span></code> subclasses.</p>
+<div class="section" id="backend-considerations">
+<h3>Backend considerations<a class="headerlink" href="#backend-considerations" title="Permalink to this headline">¶</a></h3>
+<p>One of the main concerns with probe outputs
+is how backends would implement them.
+There are similar concerns with <code class="docutils literal"><span class="pre">Process</span></code> subclasses,
+but most backends are able to fall back
+to running the process with Python on the CPU.
+This can be very slow, but it should at least work.</p>
+<p>When it is slow, there is precedent for implementing
+<code class="docutils literal"><span class="pre">Process</span></code> subclass-specific code in backends;
+Nengo OCL implements an OpenCL kernel
+for the <a class="reference external" href="https://github.com/nengo/nengo_ocl/blob/fa97472c888713db2842ffcd92c13aa8ce9730ca/nengo_ocl/clra_nonlinearities.py#L1440">PresentInput process</a>,
+for example.</p>
+<p>Therefore, compared to probe outputs,
+process subclasses should be
+no more difficult to implement in different backends.
+In fact, they should be easier in that
+backends may have ways to run
+process subclasses already.</p>
+</div>
+<div class="section" id="speed-considerations">
+<h3>Speed considerations<a class="headerlink" href="#speed-considerations" title="Permalink to this headline">¶</a></h3>
+<p>The main argument for probe outputs
+is that they may have access
+to more simulation internals
+than a Node’s output process,
+and therefore probe outputs
+may be significantly faster than process subclasses.</p>
+<p>However, making changes to the API
+for a hypothetical speed increase
+is a prime example of premature optimization.
+It was decided, instead,
+to explore the process subclass first
+and determine if there are significant bottlenecks
+that would be alleviated
+by using probe outputs instead.</p>
+</div>
+<div class="section" id="finality">
+<h3>Finality<a class="headerlink" href="#finality" title="Permalink to this headline">¶</a></h3>
+<p>This rejection could be reversed
+if we find that process subclasses
+do have significant bottlenecks,
+and there is reason to believe that
+probe outputs would not suffer from the same issues.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="400-multidim-radius.html" title="previous chapter (use the left arrow)">NEP-400: Multidimensional radius</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="402-ndarray-representation.html" title="next chapter (use the right arrow)">NEP-402: Ndarray representations</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="402-ndarray-representation.html" title="NEP-402: Ndarray representations"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="400-multidim-radius.html" title="NEP-400: Multidimensional radius"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2017, Applied Brain Research. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

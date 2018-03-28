@@ -1,0 +1,284 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>NEP-400: Multidimensional radius &#8212; Nengo Enhancement Proposals 2018-03-28 documentation</title>
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2018-03-28',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NEP-401: Probe outputs" href="401-probe-outputs.html" />
+    <link rel="prev" title="NEP-100: PyNN backend" href="100-pynn-backend.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="401-probe-outputs.html" title="NEP-401: Probe outputs"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="100-pynn-backend.html" title="NEP-100: PyNN backend"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">NEPs</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="100-pynn-backend.html">NEP-100: PyNN backend</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEP-400: Multidimensional radius</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proposal">Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pros-and-cons">Pros and cons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="401-probe-outputs.html">NEP-401: Probe outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="402-ndarray-representation.html">NEP-402: Ndarray representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="403-variable-synapse-defaults.html">NEP-403: Variable synapse defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="404-java-backend.html">NEP-404: Java backend</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="001-template.html">NEP-001: Proposal template</a></li>
+<li class="toctree-l1"><a class="reference internal" href="004-rejected-template.html">NEP-004: Rejected proposal template</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>NEP-400: Multidimensional radius</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="nep-400-multidimensional-radius">
+<h1>NEP-400: Multidimensional radius<a class="headerlink" href="#nep-400-multidimensional-radius" title="Permalink to this headline">¶</a></h1>
+<table class="table table-bordered">
+<colgroup>
+<col width="27%" />
+<col width="73%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Stage</td>
+<td>Rejected</td>
+</tr>
+<tr class="row-even"><td>Rejected by</td>
+<td>Trevor Bekolay, Terry Stewart, Chris Eliasmith</td>
+</tr>
+<tr class="row-odd"><td>Rejection date</td>
+<td>October 17, 2016</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>The radius of an ensemble specifies the range of values
+it is expected to represent.
+Setting the radius to an appropriate value
+can have a large impact on the accuracy
+of a network. <a class="footnote-reference" href="#id2" id="id1">[1]</a></p>
+<table class="docutils footnote" frame="void" id="id2" rules="none">
+<colgroup><col class="label" /><col /></colgroup>
+<tbody valign="top">
+<tr><td class="label"><a class="fn-backref" href="#id1">[1]</a></td><td>See <a class="reference external" href="http://journals.plos.org/plosone/article?id=10.1371/journal.pone.0149928">Gosmann &amp; Eliasmith, 2016</a>
+for an example.</td></tr>
+</tbody>
+</table>
+<p>Under the hood, the radius has no effect on a running simulation,
+it only affects the build process.
+Specifically:</p>
+<ol class="arabic simple">
+<li>Evaluation points are scaled by the radius.</li>
+<li>Encoders are divided by the radius.</li>
+</ol>
+<p>Essentially, Nengo maps the input value to a radius of 1
+by dividing encoders by 1,
+and ensures the decoded value will be
+scaled to the original radius
+by scaling the evaluation points used
+in the decoder solving process.</p>
+</div>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Since encoders and evaluation points
+are the same dimensionality as the ensemble,
+we should allow the radius
+to also be multidimensional,
+as some ensemble represent values
+where each dimension has a different natural range.</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>This change would be relatively small
+in terms of the lines of code changed.
+The <code class="docutils literal"><span class="pre">Ensemble.radius</span></code> parameter would be
+changed to an <code class="docutils literal"><span class="pre">NdarrayParam</span></code>,
+possibly with some additional validation
+to ensure that the radius is always positive and non-zero.
+The builder would need very few changes
+as the radius is only used in the two places
+listed above.</p>
+</div>
+<div class="section" id="pros-and-cons">
+<h2>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this headline">¶</a></h2>
+<p>The radius should be multidimensional because:</p>
+<ul class="simple">
+<li>Ensembles representing values of differing range
+come up in real-world models.</li>
+<li>It requires minimal changes to the existing code.</li>
+</ul>
+<p>The radius should remain scalar because:</p>
+<ul class="simple">
+<li>It is possible to manually scale values to be
+in the same range using a transform or function.</li>
+<li>While the code change is minimal,
+the result of the code change may not be straightforward,
+resulting in subtle bugs.</li>
+</ul>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<div class="section" id="implementation-in-nengo-1-4">
+<h3>Implementation in Nengo 1.4<a class="headerlink" href="#implementation-in-nengo-1-4" title="Permalink to this headline">¶</a></h3>
+<p>Multidimensional radii were introduced in Nengo 1.4
+late in its lifecycle,
+and did not work as intended.
+Indeed, it’s difficult to tell what should happen
+with a multidimensional radius.
+In particular, the distribution of evaluation points
+makes a significant impact on the accuracy
+of the network.
+It is not clear whether it is valid to
+sample from a uniform hypersphere
+and stretch the points to a hyperellipsoid.</p>
+</div>
+<div class="section" id="finality">
+<h3>Finality<a class="headerlink" href="#finality" title="Permalink to this headline">¶</a></h3>
+<p>This rejection could be reversed
+if significant analysis and testing is done
+to see the effects of multidimensional radii
+both theoretically and in practice.
+Until that analysis is done,
+the radius will remain a scalar value.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="100-pynn-backend.html" title="previous chapter (use the left arrow)">NEP-100: PyNN backend</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="401-probe-outputs.html" title="next chapter (use the right arrow)">NEP-401: Probe outputs</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="401-probe-outputs.html" title="NEP-401: Probe outputs"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="100-pynn-backend.html" title="NEP-100: PyNN backend"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2017, Applied Brain Research. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>

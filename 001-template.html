@@ -1,0 +1,265 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+    <title>NEP-001: Proposal template &#8212; Nengo Enhancement Proposals 2018-03-28 documentation</title>
+    <link rel="stylesheet" href="_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2018-03-28',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true,
+        SOURCELINK_SUFFIX: '.txt'
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="NEP-004: Rejected proposal template" href="004-rejected-template.html" />
+    <link rel="prev" title="NEP-404: Java backend" href="404-java-backend.html" />
+  
+   
+
+  </head>
+  <body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="004-rejected-template.html" title="NEP-004: Rejected proposal template"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="404-java-backend.html" title="NEP-404: Java backend"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
+
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+        <a href="
+    index.html" class="text-logo">NEPs</a>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Table Of Contents</h2>
+  </div>
+  <div class="sidebar-toc">
+    
+    
+      <ul>
+<li class="toctree-l1"><a class="reference internal" href="100-pynn-backend.html">NEP-100: PyNN backend</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="400-multidim-radius.html">NEP-400: Multidimensional radius</a></li>
+<li class="toctree-l1"><a class="reference internal" href="401-probe-outputs.html">NEP-401: Probe outputs</a></li>
+<li class="toctree-l1"><a class="reference internal" href="402-ndarray-representation.html">NEP-402: Ndarray representations</a></li>
+<li class="toctree-l1"><a class="reference internal" href="403-variable-synapse-defaults.html">NEP-403: Variable synapse defaults</a></li>
+<li class="toctree-l1"><a class="reference internal" href="404-java-backend.html">NEP-404: Java backend</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">NEP-001: Proposal template</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context">Context</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#proposal">Proposal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#details">Details</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#pros-and-cons">Pros and cons</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#discussion">Discussion</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="004-rejected-template.html">NEP-004: Rejected proposal template</a></li>
+</ul>
+
+    
+  </div>
+</div>
+        
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+    </div>
+  </div>
+        <div id="right-column">
+          
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="index.html">Docs</a></li>
+              
+              <li>NEP-001: Proposal template</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
+            
+  <div class="section" id="nep-001-proposal-template">
+<h1>NEP-001: Proposal template<a class="headerlink" href="#nep-001-proposal-template" title="Permalink to this headline">¶</a></h1>
+<table class="table table-bordered">
+<colgroup>
+<col width="33%" />
+<col width="67%" />
+</colgroup>
+<tbody valign="top">
+<tr class="row-odd"><td>Stage</td>
+<td>Idea -&gt; In progress -&gt; Implemented</td>
+</tr>
+<tr class="row-even"><td>Proposed by</td>
+<td>Your name &lt;<a class="reference external" href="mailto:your&#37;&#52;&#48;email&#46;com">your<span>&#64;</span>email<span>&#46;</span>com</a>&gt;</td>
+</tr>
+<tr class="row-odd"><td>Approved by</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Approved on</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Estimated effort</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Implemented by</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-odd"><td>Completion date</td>
+<td>&#160;</td>
+</tr>
+<tr class="row-even"><td>Implemented in</td>
+<td>&#160;</td>
+</tr>
+</tbody>
+</table>
+<div class="section" id="context">
+<h2>Context<a class="headerlink" href="#context" title="Permalink to this headline">¶</a></h2>
+<p>Describe the part of the ecosystem you aim to enhance.
+Why is this enhancement needed?</p>
+</div>
+<div class="section" id="proposal">
+<h2>Proposal<a class="headerlink" href="#proposal" title="Permalink to this headline">¶</a></h2>
+<p>Give a short summary of your proposal.
+What are you proposing?</p>
+</div>
+<div class="section" id="details">
+<h2>Details<a class="headerlink" href="#details" title="Permalink to this headline">¶</a></h2>
+<p>Provide additional details in this section.
+While you should keep other sections short,
+feel free to use as much space as you want here.
+However, restrain yourself to making
+one single, concrete proposal.
+If some parts of the proposal
+have alternatives,
+include them in the discussion section below.</p>
+<div class="section" id="you-can-make-additional-sections">
+<h3>You can make additional sections<a class="headerlink" href="#you-can-make-additional-sections" title="Permalink to this headline">¶</a></h3>
+<p>Which can include source code:</p>
+<div class="highlight-default"><div class="highlight"><pre><span></span><span class="s2">&quot;like this!&quot;</span>
+</pre></div>
+</div>
+<p>And references to <a class="reference external" href="https://github.com/nengo/">external resources</a>.</p>
+</div>
+</div>
+<div class="section" id="pros-and-cons">
+<h2>Pros and cons<a class="headerlink" href="#pros-and-cons" title="Permalink to this headline">¶</a></h2>
+<p>No proposal is perfect.
+In order to best review a proposal,
+please provide:</p>
+<ul class="simple">
+<li>A list of pros</li>
+</ul>
+<p>And:</p>
+<ul class="simple">
+<li>A list of cons</li>
+</ul>
+<p>These lists help maintainers evaluate the proposal.
+Maintainers may add to these lists during the review process.</p>
+</div>
+<div class="section" id="discussion">
+<h2>Discussion<a class="headerlink" href="#discussion" title="Permalink to this headline">¶</a></h2>
+<p>List discussion points about the detailed description.
+This can include salient alternatives to the proposal,
+or anything else that you think should be discussed.</p>
+<div class="section" id="one-section-per-discussion-point">
+<h3>One section per discussion point<a class="headerlink" href="#one-section-per-discussion-point" title="Permalink to this headline">¶</a></h3>
+<p>Each discussion point will be discussed
+at a developer meeting.</p>
+<p>After the meeting,
+update the proposal with a summary
+of the discussion for each point.</p>
+</div>
+</div>
+</div>
+
+
+          </div>
+            
+  <div class="footer-relations">
+    
+      <div class="pull-left">
+        <a class="btn btn-default" href="404-java-backend.html" title="previous chapter (use the left arrow)">NEP-404: Java backend</a>
+      </div>
+    
+      <div class="pull-right">
+        <a class="btn btn-default" href="004-rejected-template.html" title="next chapter (use the right arrow)">NEP-004: Rejected proposal template</a>
+      </div>
+    </div>
+    <div class="clearer"></div>
+  
+        </div>
+        <div class="clearfix"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="004-rejected-template.html" title="NEP-004: Rejected proposal template"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="404-java-backend.html" title="NEP-404: Java backend"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Nengo Enhancement Proposals 2018-03-28 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright 2017, Applied Brain Research. Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
+  </body>
+</html>
