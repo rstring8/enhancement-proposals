@@ -26,7 +26,7 @@ Making a proposal
 To propose a new Nengo enhancement,
 make a pull request on the
 `enhancement proposal repository
-<https://github.com/nengo/enhancement_proposals>`_
+<https://github.com/nengo/enhancement-proposals>`_
 adding a reStructuredText file [2]_
 with the proposal.
 Your reStructedText file should follow
