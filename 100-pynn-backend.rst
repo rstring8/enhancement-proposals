@@ -19,7 +19,7 @@ Context
 
 In the
 `Nengo 2.0 paper
-<http://journal.frontiersin.org/article/10.3389/fninf.2013.00048/full)>`_
+<http://journal.frontiersin.org/article/10.3389/fninf.2013.00048/full>`_
 we make comparisons between Nengo's scripting interface
 and PyNN's, since the two tools share the goal
 of separating the frontend model creation code
